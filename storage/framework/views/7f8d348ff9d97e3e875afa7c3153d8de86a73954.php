@@ -1,0 +1,2 @@
+<!--
+    <div id="scrollTop"><div> <i data-feather="chevrons-up"></i> </div> <span>Ke Atas</span> </div>--><?php /**PATH /var/www/vhosts/psikologanda.com/laravel-akademi/resources/views/template/guest/_scroll-to-top.blade.php ENDPATH**/ ?>
