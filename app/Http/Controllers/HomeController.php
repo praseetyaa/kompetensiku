@@ -61,7 +61,7 @@ class HomeController extends Controller
 	    }
         // End get referral
 
-        return view('front/'.template_app().'/home', [
+        return view('front/home', [
             'artikel' => $artikel,
             'deskripsi' => $deskripsi,
             'layanan' => $layanan,

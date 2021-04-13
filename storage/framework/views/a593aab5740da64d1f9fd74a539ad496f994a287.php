@@ -1,2 +1,0 @@
-<!--
-    <div id="scrollTop"><div> <i data-feather="chevrons-up"></i> </div> <span>Ke Atas</span> </div>--><?php /**PATH C:\xampp\htdocs\lms-v2\resources\views/template/guest/qubisa/_scroll-to-top.blade.php ENDPATH**/ ?>
