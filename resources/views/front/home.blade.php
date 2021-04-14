@@ -179,14 +179,14 @@
     <div class="container py-5 rounded-1">
         <div class="row align-items-center">
         	<div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-start order-2 order-md-1">
-        		<img src="https://www.flaticon.com/svg/vstatic/svg/987/987628.svg?token=exp=1618300559~hmac=fef8dbff064f8a28d8dda5d8ef1d821b" width="100">
+        		<img src="{{asset('assets/images/icons/987628.svg')}}" width="100">
         	</div>
             <div class="col-12 col-md col-lg mb-3 mb-lg-0 text-center text-lg-center order-3 order-md-2">
                 <h3 class="mb-3">Siap menjadi kompeten bersama Kami?</h3>
                 <a href="https://wa.me/{{ get_nomor_whatsapp() }}" class="btn btn-theme-1 btn-lg" target="_blank">Hubungi Kami</a>
             </div>
             <div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-end order-1 order-md-3">
-            	<img src="https://www.flaticon.com/svg/vstatic/svg/987/987611.svg?token=exp=1618300559~hmac=7af480f5587f8656619b78fc6e04856f" width="100">
+            	<img src="{{asset('assets/images/icons/987611.svg')}}" width="100">
             </div>
         </div>
     </div>

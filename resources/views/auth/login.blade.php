@@ -23,20 +23,24 @@
                             <div class="col-12">
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text p-0 border-0 rounded {{ $errors->has('username') ? 'border-danger bg-danger' : 'bg-success' }}" id="basic-addon1"><!-- <i class="ti-user"></i> --></span>
+                                        <span class="input-group-text p-0 border-0 {{ $errors->has('username') ? 'border-danger bg-danger' : 'bg-success' }}" id="basic-addon1"></span>
                                     </div>
-                                    <input type="text" name="username" class="form-control rounded {{ $errors->has('username') ? 'border-danger' : '' }}" value="{{ old('username') }}" placeholder="Email atau Username" aria-label="Username" aria-describedby="basic-addon1">
-                                    @if($errors->has('username'))
-                                    <small class="form-row col-12 mt-1 text-danger">{{ ucfirst($errors->first('username')) }}</small>
-                                    @endif
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                        <input type="text" name="username" class="form-control {{ $errors->has('username') ? 'border-danger' : '' }}" value="{{ old('username') }}" placeholder="Email atau Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        @if($errors->has('username'))
+                                        <small class="form-row col-12 mt-1 text-danger">{{ ucfirst($errors->first('username')) }}</small>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text p-0 border-0 rounded {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-success' }}" id="basic-addon2"><!-- <i class="ti-pencil"></i> --></span>
+                                        <span class="input-group-text p-0 border-0 {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-success' }}" id="basic-addon2"><!-- <i class="ti-pencil"></i> --></span>
                                     </div>
                                     <div class="input-group">
-                                        <input type="password" name="password" class="form-control rounded-start {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
-                                        <a href="#" class="input-group-text bg-theme-1 border-0 rounded text-white {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-theme-1' }}" id="btn-toggle-password"><i class="fa fa-eye"></i></a>
+                                        <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                                        <a href="#" class="input-group-text bg-theme-1 border-0 text-white {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-theme-1' }}" id="btn-toggle-password"><i class="fa fa-eye"></i></a>
                                     </div>
                                     @if($errors->has('password'))
                                     <small class="form-row col-12 mt-1 text-danger">{{ ucfirst($errors->first('password')) }}</small>
@@ -61,7 +65,7 @@
                                 <div class="form-group mb-0">
                                     <div class="">
                                         <p class="text-center border-or">Belum punya akun?</p>
-                                       <!--  <a class="btn btn-light w-100" href="/register{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">Daftar</a> -->
+                                        <a class="btn btn-light w-100" href="/register{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">Daftar</a>
                                     </div>
                                 </div>
                             </div>

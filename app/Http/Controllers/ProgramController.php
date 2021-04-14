@@ -45,7 +45,28 @@ class ProgramController extends Controller
             ]);
         }
     }
-	
+
+    // EDIT IKI COK ==============================================================================================================
+    public function index2()
+    {
+        return view('front/programs');
+    }
+    public function index3()
+    {
+        return view('front/single-program');
+    } 
+    public function index4()
+    {
+        return view('front/acara');
+    }
+    public function index5()
+    {
+        return view('front/single-acara');
+    }
+    public function index6()
+    {
+        return view('front/tentang-kami');
+    }   	
     /**
      * Mengambil data program
      *

@@ -286,7 +286,7 @@ class BlogController extends Controller
         $artikel = Blog::join('users','blog.author','=','users.id_user')->orderBy('blog_at','desc')->paginate(9);
 
         // View
-        return view('front/'.template_app().'/posts', [
+        return view('front/posts', [
             'artikel' => $artikel
         ]);
     }
@@ -310,7 +310,7 @@ class BlogController extends Controller
         $artikel = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','=',$kategori->id_ka)->orderBy('blog_at','desc')->paginate(9);
 
         // View
-        return view('front/'.template_app().'/category', [
+        return view('front/category', [
             'artikel' => $artikel,
             'kategori' => $kategori,
         ]);
@@ -349,7 +349,7 @@ class BlogController extends Controller
         $artikel = Blog::join('users','blog.author','=','users.id_user')->whereIn('id_blog',$ids)->orderBy('blog_at','desc')->paginate(9);
 
         // View
-        return view('front/'.template_app().'/tag', [
+        return view('front/tag', [
             'artikel' => $artikel,
             'tag' => $tag,
         ]);
@@ -367,7 +367,7 @@ class BlogController extends Controller
         $artikel = Blog::join('users','blog.author','=','users.id_user')->join('kategori_artikel','blog.blog_kategori','=','kategori_artikel.id_ka')->where('blog_title','like','%'.$request->keyword.'%')->orWhere('konten','like','%'.$request->keyword.'%')->orWhere('kategori','like','%'.$request->keyword.'%')->orderBy('blog_at','desc')->paginate(9);
 
         // View
-        return view('front/'.template_app().'/search', [
+        return view('front/search', [
             'artikel' => $artikel,
             'keyword' => $request->keyword,
         ]);
@@ -411,7 +411,7 @@ class BlogController extends Controller
         $recents = Blog::join('users','blog.author','=','users.id_user')->orderBy('blog_at','desc')->limit(3)->get();
 
         // View
-        return view('front/'.template_app().'/single-post', [
+        return view('front/single-post', [
             'blog' => $blog,
             'blog_tags' => $blog_tags,
             'blog_komentar' => $blog_komentar,

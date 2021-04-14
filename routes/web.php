@@ -42,6 +42,13 @@ Route::group(['middleware' => ['guest']], function(){
 	Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 	Route::post('/register', 'Auth\RegisterController@register');
 
+	// program
+	Route::get('/program', 'ProgramController@index2');
+	Route::get('/program/single-program', 'ProgramController@index3');
+	Route::get('/acara', 'ProgramController@index4');
+	Route::get('/acara/acara-program', 'ProgramController@index5');
+	Route::get('/tentang-kami', 'ProgramController@index6');
+
 	if(lms_app() == 'cd'){
 		// Another Pages
 		Route::get('/beasiswa', 'HomeController@beasiswa');

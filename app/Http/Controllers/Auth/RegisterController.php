@@ -59,7 +59,7 @@ class RegisterController extends Controller
         }
         // End get referral
 
-        return view('front/'.template_app().'/register', [
+        return view('front/register', [
 			'default' => $default,
 			'user' => $user,
 		]);
