@@ -20,9 +20,11 @@
 .rounded-4{border-radius: 2em!important}
 html {scroll-behavior: smooth;}
 body {background-color: var(--bs-light)}
+[v-cloak]{display: none}
 .w-fit{width: fit-content}
 .h-fit{height: fit-content}
 .card{border: 0; box-shadow: var(--shadow-sm); border-radius: var(--rounded-1)}
+.text-justify{text-align: justify;}
 
 .dropdown-menu{border: 0; box-shadow: var(--shadow-sm)}
 .dropdown-mobile .dropdown-toggle::after{display: none;}
@@ -74,3 +76,25 @@ body {background-color: var(--bs-light)}
 @media (min-width: 992px) {
 
 }
+
+Kontent
+
+- Program Pelatihan dan Sertifikasi Profesi Kepelatihan
+Klaster Pelaksanaan Pelatihan Tatap Muka
+Kualifikasi 3 Junior Instruktur
+Kualifikasi 4 Instruktur
+
+- Program Pelatihan dan Sertifikasi Praktisi Sumber Daya Manusia
+Staf Kompensasi dan Benefit
+Supervisor Pengadaan, Penyeleksian, dan Penempatan Sumber Daya Manusia (SPPPSDM)
+Manajer Sumber Daya Manusia (MSDM)
+
+- Program Pelatihan dan Sertifikasi Profesi UMKM
+Pengelola UMKM
+Pendamping UMKM
+Fasilitator Diklat UMKM
+
+- Program Pelatihan dan Sertifikasi Profesi Teknologi Digital
+Digital Marketing
+Operator Komputer Muda
+Desainer Grafis Muda

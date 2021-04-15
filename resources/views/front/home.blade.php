@@ -74,56 +74,46 @@
 				</div>
 			</div>
 		</div>
-		<div class="d-flex">
-			<div class="col-auto"><a href="#" class="badge badge-dark">Sertifikasi</a></div>
-		</div>
 	</div>
 </section>
-<section class="section-rekomendasi">
+<section class="section-program" id="program-content">
 	<div class="container my-5">
 		<div class="heading">
-			<h5>Rekomendasi Kursus Sertifikasi</h5>
-			<p>Kursus Sertifikasi</p>
-		</div>
-		<div class="row">
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-				<div class="card border-0 shadow-sm rounded-1">
-					<a href="#" class="card-link">
-						<img src="https://kompetensiku.id/assets/images/others/about-1-fix.jpg" class="card-img-top" alt="thumbnail">
-					</a>
-					<div class="card-body text-center">
-						<p>Sertifikasi Analis Efek</p>
-						<button class="btn btn-theme-1 w-100">Detail</button>
-					</div>
+			<h5>Program</h5>
+			<div id="typed-strings">
+				<div v-if="cat!=null" v-for="cat in categories">
+					<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">@{{cat.category}}</span></p>
 				</div>
 			</div>
+			<span id="typed"></span>
 		</div>
-	</div>
-</section>
-<section class="section-kursus">
-	<div class="container my-5">
-		<div class="heading">
-			<h5>Kursus</h5>
-			<p>Kursus online</p>
-		</div>
-		<div class="row">
-            <div class="col-6 col-md-4 col-lg-3 mb-3">
-				<div class="card border-0 shadow-sm rounded-1">
-					<a href="#" class="card-link">
-						<img src="https://kompetensiku.id/assets/images/others/about-1-fix.jpg" class="card-img-top" alt="thumbnail">
-					</a>
-					<div class="card-img-overlay h-fit w-fit">
-						<p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded"><i class="fas fa-cloud"></i> Online</p>
-					</div>
-					<div class="card-body text-center">
-						<p>Tingkatkan Penjualan dengan Facebook Marketing</p>
-						<button class="btn btn-theme-1 w-100">Detail</button>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div class="row">
+            <div class="col-6 col-md-4 col-lg-3 mb-3" 
+            	v-if="item!=null"
+                v-for="item in items">
+                <div class="card border-0 shadow-sm rounded-1" 
+                	data-bs-toggle="tooltip"
+                	data-bs-placement="bottom"
+                	:title="item.subtitle">
+                    <a :href="'/program/single-program?id='+item.id+''" class="card-link">
+                        <img :src="item.img" class="card-img-top rounded-1" alt="thumbnail">
+                    </a>
+                    <div class="card-img-overlay h-fit w-fit">
+                        <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded"><i class="fas fa-cloud"></i> Online</p>
+                    </div>
+                    <div class="card-body">
+                    	<div class="row mb-2">
+                    		<div class="col-12 text-truncate">
+                        		@{{ item.subtitle }}
+                        	</div>
+                        </div>
+                        <a :href="'/program/single-program?id='+item.id+''" class="btn btn-theme-1 w-100">Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 		<div class="text-center mt-3">
-			<button class="btn btn-theme-1 px-4">Lihat Lainya</button>
+			<a href="/program" class="btn btn-theme-1 px-4">Lihat Lainya</a>
 		</div>
 	</div>
 </section>
@@ -178,17 +168,31 @@
 <section class="bg-white">
     <div class="container py-5 rounded-1">
         <div class="row align-items-center">
-        	<div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-start order-2 order-md-1">
+        	<!-- <div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-start order-2 order-md-1">
         		<img src="{{asset('assets/images/icons/987628.svg')}}" width="100">
-        	</div>
+        	</div> -->
             <div class="col-12 col-md col-lg mb-3 mb-lg-0 text-center text-lg-center order-3 order-md-2">
                 <h3 class="mb-3">Siap menjadi kompeten bersama Kami?</h3>
                 <a href="https://wa.me/{{ get_nomor_whatsapp() }}" class="btn btn-theme-1 btn-lg" target="_blank">Hubungi Kami</a>
             </div>
-            <div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-end order-1 order-md-3">
+            <!-- <div class="col-6 col-md-auto col-lg-auto mb-3 mb-lg-0 text-center text-lg-end order-1 order-md-3">
             	<img src="{{asset('assets/images/icons/987611.svg')}}" width="100">
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
+@endsection
+@section('js-extra')
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
+<script>
+  var typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    loop: true,
+    typeSpeed: 10,
+    showCursor: false,
+    smartBackspace: true,
+  });
+</script>
 @endsection

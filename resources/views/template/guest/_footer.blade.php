@@ -3,8 +3,9 @@
         <div class="row">
             <div class="col-md-12 col-lg-4">
                 <a href="#">
-                    <img src="{{ asset('assets/images/logo/'.get_logo()) }}" width="200" alt="logo" style="filter: brightness(0) invert(1);">
+                    <img class="mb-3" src="{{ asset('assets/images/logo/'.get_logo()) }}" width="200" alt="logo" style="filter: brightness(0) invert(1);">
                 </a>
+                <p class="text-justify">{{ get_website_name() }} adalah Konsultan Pengembangan Kompetensi Sumber Daya Manusia dan Pusat Pendidikan dan pelatihan untuk para praktisi pengembangan sumber daya manusia (HRD) dengan Sertifikat BNSP (Badan Nasional Sertifikasi Profesi) untuk skema staf sdm, supervisor sdm, kepala bagian sdm, manajer sdm, dan direktur sdm.</p>
             </div>
             <div class="col-md-6 col-lg-2">
                 <h5>Menu</h5>

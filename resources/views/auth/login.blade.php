@@ -39,8 +39,8 @@
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
-                                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
-                                        <a href="#" class="input-group-text bg-theme-1 border-0 text-white {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-theme-1' }}" id="btn-toggle-password"><i class="fa fa-eye"></i></a>
+                                        <input id="myInput" type="password" name="password" class="form-control {{ $errors->has('password') ? 'border-danger' : '' }}" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                                        <a onclick="myFunction()" href="#" class="input-group-text text-decoration-none bg-theme-1 border-0 text-white {{ $errors->has('password') ? 'border-danger bg-danger' : 'bg-theme-1' }}" id="btn-toggle-password"><i class="fa fa-eye"></i></a>
                                     </div>
                                     @if($errors->has('password'))
                                     <small class="form-row col-12 mt-1 text-danger">{{ ucfirst($errors->first('password')) }}</small>
@@ -64,8 +64,8 @@
                             <div class="col-12">
                                 <div class="form-group mb-0">
                                     <div class="">
-                                        <p class="text-center border-or">Belum punya akun?</p>
-                                        <a class="btn btn-light w-100" href="/register{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">Daftar</a>
+                                        <p class="border-or">Belum punya akun?</p>
+                                        <a class="btn btn-danger w-100" href="/register{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">Daftar</a>
                                     </div>
                                 </div>
                             </div>
@@ -84,30 +84,13 @@
 
 @yield('js-extra')
 <script>
-$(".preloader").fadeOut();
-
-// Button toggle password
-$(document).on("click", "#btn-toggle-password", function(e){
-    e.preventDefault();
-    if(!$(this).hasClass("show")){
-        $("input[name=password]").attr("type","text");
-        $(this).find(".fa").removeClass("fa-eye").addClass("fa-eye-slash");
-        $(this).addClass("show");
-    }
-    else{
-        $("input[name=password]").attr("type","password");
-        $(this).find(".fa").removeClass("fa-eye-slash").addClass("fa-eye");
-        $(this).removeClass("show");
-    }
-});
-</script>
-<script type="text/javascript">
-     $(document).on("click", ".navbar-toggler", function(e){
-        e.preventDefault();
-        if($(".navbar-collapse").hasClass('show'))
-            $(".navbar-collapse").removeClass('show')
-        else
-            $(".navbar-collapse").addClass('show')
-     });
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
 </script>
 @endsection

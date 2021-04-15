@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Program;
 use App\User;
+use App\Layanan;
 
 class ProgramController extends Controller
 {
@@ -63,9 +64,33 @@ class ProgramController extends Controller
     {
         return view('front/single-acara');
     }
-    public function index6()
+    public function index6(Request $request)
     {
-        return view('front/tentang-kami');
+        // Layanan
+        $layanan = Layanan::all();
+        
+        // Get referral
+        $referral = $request->query('ref');
+        if($referral == null){
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/tentang-kami?ref='.get_referral_code()->username);
+        }
+        else{
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/tentang-kami?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
+        // End get referral
+
+        return view('front/tentang-kami', [
+            'layanan' => $layanan
+        ]);
+
     }   	
     /**
      * Mengambil data program

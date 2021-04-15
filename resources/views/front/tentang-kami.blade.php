@@ -9,8 +9,10 @@
 <div class="container" style="top: -5em; position: relative;">
     <div class="card">
         <div class="card-body">
-            <div class="d-flex">
-                <img width="130" class="me-3 flex-shrink-0" src="{{ asset('assets/images/logo/'.get_icon()) }}">
+            <div class="d-block d-lg-flex">
+                <div class="text-center text-lg-start mb-3 mb-lg-0">
+                    <img width="130" class="me-3 flex-shrink-0" src="{{ asset('assets/images/logo/'.get_icon()) }}">
+                </div>
                 <div class="content">
                     <p>Selamat datang di Kompetensiku. Kami adalah Konsultan Pengembangan Kompetensi Sumber Daya Manusia dan Pusat Pendidikan dan pelatihan untuk para praktisi pengembangan sumber daya manusia (HRD) dengan Sertifikat BNSP (Badan Nasional Sertifikasi Profesi) untuk skema staf sdm, supervisor sdm, kepala bagian sdm, manajer sdm, dan direktur sdm.</p>
                     <a href="https://wa.me/{{ get_nomor_whatsapp() }}" class="btn btn-theme-1" target="_blank"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
@@ -25,7 +27,7 @@
         <div class="rounded-2 w-25 mx-auto" style="border: 3px solid var(--color-1)"></div>
     </div>
     <div class="row">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="card">
                 <div class="card-header bg-transparent">
                     <h5 class="m-0">Level Staf</h5>
@@ -44,7 +46,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="card">
                 <div class="card-header bg-transparent">
                     <h5 class="m-0">Level Supervisor</h5>
@@ -60,7 +62,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6 mb-3">
             <div class="card">
                 <div class="card-header bg-transparent">
                     <h5 class="m-0">Level Manajer</h5>
@@ -82,6 +84,25 @@
     <div class="heading text-center mb-5">
         <h3>Mengapa Kami?</h3>
         <div class="rounded-2 w-25 mx-auto" style="border: 3px solid var(--color-1)"></div>
+    </div>
+    <div class="row justify-content-center">
+        @foreach($layanan as $data)
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <div class="icon bg-theme-1 text-white p-3 rounded-1 w-fit mx-auto">
+                        <i class="fs-1 {{ $data->layanan_icon }}"></i>
+                    </div>
+                    <h3 class="text-center">{{ $data->layanan }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="service-text">
+                        <p>{{ $data->layanan_caption }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
 </div>
 @endsection

@@ -64,12 +64,12 @@ class HomeController extends Controller
         return view('front/home', [
             'artikel' => $artikel,
             'deskripsi' => $deskripsi,
-            'layanan' => $layanan,
 			'mentor' => $mentor,
 			'mitra' => $mitra,
 			'slider' => $slider,
             'testimoni' => $testimoni,
 		]);
+
     }	
 	
     /**
@@ -97,7 +97,7 @@ class HomeController extends Controller
 	    }
         // End get referral
 
-        return view('front/'.template_app().'/beasiswa');
+        return view('front/beasiswa');
     }	
 	
     /**
@@ -125,7 +125,7 @@ class HomeController extends Controller
 	    }
         // End get referral
 
-        return view('front/'.template_app().'/afiliasi');
+        return view('front/afiliasi');
     }
 	
     /**
@@ -135,6 +135,9 @@ class HomeController extends Controller
      */
     public function tentangKami(Request $request)
     {
+        // Layanan
+        $layanan = Layanan::all();
+        
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
@@ -153,6 +156,8 @@ class HomeController extends Controller
 	    }
         // End get referral
 
-        return view('front/'.template_app().'/tentang-kami');
+        return view('front/tentang-kami', [
+            'layanan' => $layanan
+        ]);
     }
 }
