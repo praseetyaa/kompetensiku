@@ -12,38 +12,83 @@
 	  </ol>
 	</nav>
 </div>
-<section id="program-content">
+<section>
 	<div class="container">
-        <div class="row">
-            <div class="col-6 col-md-4 col-lg-3 mb-3" 
-                v-if="item!=null"
-                v-for="item in items">
-                <div class="card border-0 shadow-sm rounded-1" 
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    :title="item.subtitle">
-                    <a href="/program/single-program" class="card-link">
-                        <img :src="item.img" class="card-img-top rounded-1" alt="thumbnail">
-                    </a>
-                    <div class="card-img-overlay h-fit w-fit">
-                        <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded"><i class="fas fa-cloud"></i> Online</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-12 text-truncate">
-                                @{{ item.subtitle }}
-                            </div>
+        <ul class="nav nav-pills nav-justified mb-3 bg-white shadow-sm rounded-1 p-2" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">BNSP</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Non BNSP</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false"><span class="d-none d-md-inline">Program</span>&nbsp;Prakerja</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                @foreach($program_bnsp as $data)
+                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card border-0 shadow-sm rounded-1" 
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="{{$data->program_title}}">
+                        <a href="/program/{{$data->program_permalink}}" class="card-link">
+                            <img src="{{asset('assets/images/cover-program/'.$data->program_gambar) }}" class="card-img-top rounded-1" alt="thumbnail">
+                        </a>
+                        <div class="card-img-overlay h-fit w-fit">
+                            <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded">{{$data->kategori}}</p>
                         </div>
-                        <a href="/program/single-program" class="btn btn-theme-1 w-100">Detail</a>
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-12 text-truncate">
+                                    {{$data->program_title}}
+                                </div>
+                            </div>
+                            <a href="/program/{{$data->program_permalink}}" class="btn btn-theme-1 w-100">Detail</a>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
+          </div>
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="row">
+                @foreach($program_nonbnsp as $data)
+                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card border-0 shadow-sm rounded-1" 
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="{{$data->program_title}}">
+                        <a href="/program/{{$data->program_permalink}}" class="card-link">
+                            <img src="{{asset('assets/images/cover-program/'.$data->program_gambar) }}" class="card-img-top rounded-1" alt="thumbnail">
+                        </a>
+                        <div class="card-img-overlay h-fit w-fit">
+                            <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded">{{$data->kategori}}</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-12 text-truncate">
+                                    {{$data->program_title}}
+                                </div>
+                            </div>
+                            <a href="/program/{{$data->program_permalink}}" class="btn btn-theme-1 w-100">Detail</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+              <div class="text-center my-5">
+                    <img src="{{asset('assets/images/icons/coming-soon.svg')}}" width="200">
+                    <h3>Segera Hadir</h3>
+                    <p>Program ini akan segera hadir</p>
+              </div>
+          </div>
         </div>
 	</div>
 </section>
 
-@endsection
-@section('js-extra')
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
 @endsection

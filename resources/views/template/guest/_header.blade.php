@@ -38,7 +38,7 @@
     </form>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link fw-bold {{ strpos(Request::url(), '/') ? 'active' : '' }}" href="/">Beranda</a>
+          <a class="nav-link fw-bold {{ Request::path()=='/' ? 'active' : '' }}" href="/">Beranda</a>
         </li>
         <li class="nav-item">
           <a class="nav-link fw-bold {{ strpos(Request::url(), '/program') ? 'active' : '' }}" href="/program">Program</a>

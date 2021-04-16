@@ -51,7 +51,8 @@
                                 <li class="sidebar-item {{ strpos(Request::url(), '/admin/artikel/tag') ? 'active' : '' }}"><a href="/admin/artikel/tag" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu">Tag</span></a></li>
                             </ul>
                         </li>
-						@if(lms_app() == 'pt')
+						<li class="sidebar-item {{ strpos(Request::url(), '/admin/program') ? 'selected' : '' }}"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ strpos(Request::url(), '/admin/program') ? 'active' : '' }}" href="/admin/program" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Program</span></a></li>
+                        @if(lms_app() == 'pt')
                         <li class="sidebar-item {{ strpos(Request::url(), '/admin/program') ? 'selected' : '' }}"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ strpos(Request::url(), '/admin/program') ? 'active' : '' }}" href="/admin/program" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Program</span></a></li>
                         <li class="sidebar-item {{ strpos(Request::url(), '/admin/karir') ? 'selected' : '' }}"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ strpos(Request::url(), '/admin/karir') ? 'active' : '' }}" href="/admin/karir" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Karir</span></a></li>
 						@endif

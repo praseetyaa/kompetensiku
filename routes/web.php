@@ -43,8 +43,9 @@ Route::group(['middleware' => ['guest']], function(){
 	Route::post('/register', 'Auth\RegisterController@register');
 
 	// program
-	Route::get('/program', 'ProgramController@index2');
-	Route::get('/program/single-program', 'ProgramController@index3');
+	Route::get('/program', 'ProgramController@program_all');
+	// Route::get('/program/single-program', 'ProgramController@index3');
+	Route::get('/program/{permalink}', 'ProgramController@programpost');
 	Route::get('/acara', 'ProgramController@index4');
 	Route::get('/acara/acara-program', 'ProgramController@index5');
 	Route::get('/tentang-kami', 'ProgramController@index6');
@@ -232,6 +233,15 @@ Route::group(['middleware' => ['admin']], function(){
 	Route::get('/admin/halaman/edit/{id}', 'HalamanController@edit');
 	Route::post('/admin/halaman/update', 'HalamanController@update');
 	Route::post('/admin/halaman/delete', 'HalamanController@delete');
+
+	// Program
+	Route::get('/admin/program', 'ProgramController@index');
+	Route::get('/admin/program/create', 'ProgramController@create');
+	Route::post('/admin/program/store', 'ProgramController@store');
+	Route::get('/admin/program/detail/{id}', 'ProgramController@detail');
+	Route::get('/admin/program/edit/{id}', 'ProgramController@edit');
+	Route::post('/admin/program/update', 'ProgramController@update');
+	Route::post('/admin/program/delete', 'ProgramController@delete');
 
 	if(lms_app() == 'pt'){
 		// Program

@@ -12,6 +12,7 @@ use App\Setting;
 use App\Slider;
 use App\Testimoni;
 use App\User;
+use App\Program;
 
 class HomeController extends Controller
 {		
@@ -60,8 +61,10 @@ class HomeController extends Controller
 	        }
 	    }
         // End get referral
+        $program_semua = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->orderBy('program_at', 'desc')->limit(12)->get();
 
         return view('front/home', [
+            'program_semua' => $program_semua,
             'artikel' => $artikel,
             'deskripsi' => $deskripsi,
 			'mentor' => $mentor,

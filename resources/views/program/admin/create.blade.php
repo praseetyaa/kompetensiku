@@ -54,13 +54,12 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label>Kategori <span class="text-danger">*</span></label>
-									<select name="kategori" class="form-control col-md-4  {{ $errors->has('kategori') ? 'is-invalid' : '' }}">
-										<option value="" disabled selected>--Pilih--</option>
-										<option value="1" {{ old('kategori') == 1 ? 'selected' : '' }}>Online Class</option>
-										<option value="2" {{ old('kategori') == 2 ? 'selected' : '' }}>Online Course</option>
-										<option value="3" {{ old('kategori') == 3 ? 'selected' : '' }}>Workshop</option>
-										<option value="4" {{ old('kategori') == 4 ? 'selected' : '' }}>Sertifikasi</option>
-									</select>
+                                    <select name="kategori" class="form-control col-md-4  {{ $errors->has('kategori') ? 'is-invalid' : '' }}">
+                                        <option value="" disabled selected>--Pilih--</option>
+                                        @foreach($kategori as $data)
+                                        <option value="{{ $data->id_kp }}" {{ old('kategori') == $data->id_kp ? 'selected' : '' }}>{{ $data->kategori }}</option>
+                                        @endforeach
+                                    </select>
                                     @if($errors->has('kategori'))
                                     <small class="text-danger">{{ ucfirst($errors->first('kategori')) }}</small>
                                     @endif

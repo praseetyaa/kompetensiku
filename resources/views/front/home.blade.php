@@ -76,41 +76,42 @@
 		</div>
 	</div>
 </section>
-<section class="section-program" id="program-content">
+<section class="section-program">
 	<div class="container my-5">
-		<div class="heading">
+		<div class="heading mb-3">
 			<h5>Program</h5>
 			<div id="typed-strings">
-				<div v-if="cat!=null" v-for="cat in categories">
-					<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">@{{cat.category}}</span></p>
-				</div>
+				<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">Profesi Kepelatihan</span></p>
+				<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">Praktisi Sumber Daya Manusia</span></p>
+				<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">Profesi UMKM</span></p>
+				<p>Program Pelatihan dan Sertifikasi <span class="fw-bold">Profesi Profesi Teknologi Digital</span></p>
 			</div>
 			<span id="typed"></span>
 		</div>
         <div class="row">
-            <div class="col-6 col-md-4 col-lg-3 mb-3" 
-            	v-if="item!=null"
-                v-for="item in items">
+            @foreach($program_semua as $data)
+            <div class="col-6 col-md-4 col-lg-3 mb-3">
                 <div class="card border-0 shadow-sm rounded-1" 
-                	data-bs-toggle="tooltip"
-                	data-bs-placement="bottom"
-                	:title="item.subtitle">
-                    <a :href="'/program/single-program?id='+item.id+''" class="card-link">
-                        <img :src="item.img" class="card-img-top rounded-1" alt="thumbnail">
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="{{$data->program_title}}">
+                    <a href="/program/{{$data->program_permalink}}" class="card-link">
+                        <img src="{{asset('assets/images/cover-program/'.$data->program_gambar) }}" class="card-img-top rounded-1" alt="thumbnail">
                     </a>
                     <div class="card-img-overlay h-fit w-fit">
-                        <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded"><i class="fas fa-cloud"></i> Online</p>
+                        <small class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded">{{$data->kategori}}</small>
                     </div>
                     <div class="card-body">
-                    	<div class="row mb-2">
-                    		<div class="col-12 text-truncate">
-                        		@{{ item.subtitle }}
-                        	</div>
+                        <div class="row mb-2">
+                            <div class="col-12 text-truncate">
+                                {{$data->program_title}}
+                            </div>
                         </div>
-                        <a :href="'/program/single-program?id='+item.id+''" class="btn btn-theme-1 w-100">Detail</a>
+                        <a href="/program/{{$data->program_permalink}}" class="btn btn-theme-1 w-100">Detail</a>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
 		<div class="text-center mt-3">
 			<a href="/program" class="btn btn-theme-1 px-4">Lihat Lainya</a>
@@ -183,7 +184,6 @@
 </section>
 @endsection
 @section('js-extra')
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
 <script>
@@ -191,7 +191,6 @@
     stringsElement: '#typed-strings',
     loop: true,
     typeSpeed: 10,
-    showCursor: false,
     smartBackspace: true,
   });
 </script>

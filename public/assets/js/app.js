@@ -20,7 +20,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Kualifikasi 3 Junior Instruktur',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '2',
+        category: '1',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -28,7 +28,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Kualifikasi 4 Instruktur',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '3',
+        category: '1',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -36,15 +36,15 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Staf Sumberdaya Manusia (SSDM)',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '4',
+        category: '2',
         author: 'John Seno',
         date : '15 April 2021'
       },
       { id : '5', 
         img : 'assets/images/program/thumbnail.png',
-        subtitle: 'Supervisor Pengadaan, Penyeleksian, dan Penempatan Sumber Daya Manusia (SPPPSDM)',
+        subtitle: 'Supervisor Pelatihan dan Pengembangan Sumber Daya Manusia (SPPSDM)',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '5',
+        category: '2',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -52,7 +52,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Manajer Sumber Daya Manusia (MSDM)',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '6',
+        category: '2',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -60,7 +60,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Pengelola UMKM',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '7',
+        category: '3',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -68,7 +68,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Pendamping UMKM',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '8',
+        category: '3',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -76,7 +76,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Fasilitator Diklat UMKM',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '9',
+        category: '3',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -84,7 +84,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Digital Marketing',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '10',
+        category: '4',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -92,7 +92,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Operator Komputer Muda',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '11',
+        category: '4',
         author: 'John Seno',
         date : '15 April 2021'
       },
@@ -100,7 +100,7 @@ var one = new Vue({
         img : 'assets/images/program/thumbnail.png',
         subtitle: 'Desainer Grafis Muda',
         content : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        category: '12',
+        category: '4',
         author: 'John Seno',
         date : '15 April 2021'
       }

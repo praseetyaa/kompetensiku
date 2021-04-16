@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\KategoriProgram;
 use App\Program;
 use App\User;
 use App\Layanan;
@@ -21,25 +22,8 @@ class ProgramController extends Controller
     {
         if(Auth::user()->is_admin == 1){
             // Data program
-            $program = Program::join('users','program.author','=','users.id_user')->orderBy('program_at','desc')->get();
-			
-			foreach($program as $data){
-				switch($data->program_kategori){
-					case 1:
-						$data->program_kategori = 'Online Class';
-					break;
-					case 2:
-						$data->program_kategori = 'Online Course';
-					break;
-					case 3:
-						$data->program_kategori = 'Workshop';
-					break;
-					case 4:
-						$data->program_kategori = 'Sertifikasi';
-					break;
-				}
-			}
-			
+            $program = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->orderBy('program_at','desc')->get();
+            
             // View
             return view('program/admin/index', [
                 'program' => $program,
@@ -47,22 +31,10 @@ class ProgramController extends Controller
         }
     }
 
-    // EDIT IKI COK ==============================================================================================================
-    public function index2()
-    {
-        return view('front/programs');
-    }
-    public function index3()
-    {
-        return view('front/single-program');
-    } 
+    // EDIT IKI COK ============================================================================================================== 
     public function index4()
     {
         return view('front/acara');
-    }
-    public function index5()
-    {
-        return view('front/single-acara');
     }
     public function index6(Request $request)
     {
@@ -91,7 +63,8 @@ class ProgramController extends Controller
             'layanan' => $layanan
         ]);
 
-    }   	
+    }   
+
     /**
      * Mengambil data program
      *
@@ -99,15 +72,15 @@ class ProgramController extends Controller
      */
     public function getProgram($kategori)
     {
-		// Data program
-		$program = Program::where('program_kategori',$kategori)->orderBy('program_at','asc')->get();
-		
-		foreach($program as $data){
-			$data->program_gambar = $data->program_gambar != '' ? '/assets/images/cover-program/'.$data->program_gambar : '';
-			$data->konten = substr(strip_tags(html_entity_decode($data->konten)),0,100).'...';
-		}
+        // Data program
+        $program = Program::where('program_kategori',$kategori)->orderBy('program_at','asc')->get();
+        
+        foreach($program as $data){
+            $data->program_gambar = $data->program_gambar != '' ? '/assets/images/cover-program/'.$data->program_gambar : '';
+            $data->konten = substr(strip_tags(html_entity_decode($data->konten)),0,100).'...';
+        }
 
-		echo json_encode($program);
+        echo json_encode($program);
     }
 
     /**
@@ -117,8 +90,12 @@ class ProgramController extends Controller
      */
     public function create()
     {
+        $kategori = KategoriProgram::all();
+        
         // View
-        return view('program/admin/create');
+        return view('program/admin/create', [
+            'kategori' => $kategori
+        ]);
     }
 
     /**
@@ -141,10 +118,10 @@ class ProgramController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
         // Jika tidak ada error
-        else{	
+        else{   
             // Upload gambar
             $image_name = $request->gambar != '' ? upload_file_content($request->gambar, "assets/images/cover-program/") : '';
-			
+            
             // Upload gambar dari quill
             $html = quill_image_upload($request->konten, 'assets/images/konten-program/');
 
@@ -165,6 +142,44 @@ class ProgramController extends Controller
     }
 
     /**
+     * Menampilkan program berdasarkan kategori
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function program(Request $request, $category)
+    {
+        // Data kategori
+        $kategori = KategoriProgram::where('slug','=',$category)->firstOrFail();
+        
+        // Get referral
+        $referral = $request->query('ref');
+        if($referral == null){
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/kategori/'.$category.'?ref='.get_referral_code()->username);
+        }
+        else{
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/kategori/'.$category.'?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
+        // End get referral
+        
+        // Data program
+        $programs = Program::join('users','program.author','=','users.id_user')->where('program_kategori',$kategori->id_kp)->orderBy('program_at','asc')->paginate(12);
+
+        // View
+        return view('front/program-posts', [
+            'kategori' => $kategori->kategori,
+            'programs' => $programs
+        ]);
+    }
+
+    /**
      * Menampilkan program online class
      *
      * @return \Illuminate\Http\Response
@@ -174,27 +189,27 @@ class ProgramController extends Controller
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
-        	$request->session()->put('ref', get_referral_code()->username);
-        	return redirect('/online-class?ref='.get_referral_code()->username);
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/online-class?ref='.get_referral_code()->username);
         }
         else{
-	        $user = User::where('username',$referral)->where('status','=',1)->first();
-	        if(!$user){
-	        	$request->session()->put('ref', get_referral_code()->username);
-	        	return redirect('/online-class?ref='.get_referral_code()->username);
-	        }
-	        else{
-	        	$request->session()->put('ref', $referral);
-	        }
-	    }
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/online-class?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
         // End get referral
-		
+        
         // Data program
         $programs = Program::join('users','program.author','=','users.id_user')->where('program_kategori',1)->orderBy('program_at','asc')->paginate(12);
 
         // View
-        return view('front/'.template_app().'/program-posts', [
-			'kategori' => 'Online Class',
+        return view('front/program-posts', [
+            'kategori' => 'Online Class',
             'programs' => $programs
         ]);
     }
@@ -209,27 +224,27 @@ class ProgramController extends Controller
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
-        	$request->session()->put('ref', get_referral_code()->username);
-        	return redirect('/online-course?ref='.get_referral_code()->username);
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/online-course?ref='.get_referral_code()->username);
         }
         else{
-	        $user = User::where('username',$referral)->where('status','=',1)->first();
-	        if(!$user){
-	        	$request->session()->put('ref', get_referral_code()->username);
-	        	return redirect('/online-course?ref='.get_referral_code()->username);
-	        }
-	        else{
-	        	$request->session()->put('ref', $referral);
-	        }
-	    }
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/online-course?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
         // End get referral
-		
+        
         // Data program
         $programs = Program::join('users','program.author','=','users.id_user')->where('program_kategori',2)->orderBy('program_at','asc')->paginate(12);
 
         // View
-        return view('front/'.template_app().'/program-posts', [
-			'kategori' => 'Online Course',
+        return view('front/program-posts', [
+            'kategori' => 'Online Course',
             'programs' => $programs
         ]);
     }
@@ -244,27 +259,27 @@ class ProgramController extends Controller
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
-        	$request->session()->put('ref', get_referral_code()->username);
-        	return redirect('/workshop?ref='.get_referral_code()->username);
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/workshop?ref='.get_referral_code()->username);
         }
         else{
-	        $user = User::where('username',$referral)->where('status','=',1)->first();
-	        if(!$user){
-	        	$request->session()->put('ref', get_referral_code()->username);
-	        	return redirect('/workshop?ref='.get_referral_code()->username);
-	        }
-	        else{
-	        	$request->session()->put('ref', $referral);
-	        }
-	    }
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/workshop?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
         // End get referral
-		
+        
         // Data program
         $programs = Program::join('users','program.author','=','users.id_user')->where('program_kategori',3)->orderBy('program_at','asc')->paginate(12);
 
         // View
-        return view('front/'.template_app().'/program-posts', [
-			'kategori' => 'Workshop',
+        return view('front/program-posts', [
+            'kategori' => 'Workshop',
             'programs' => $programs
         ]);
     }
@@ -279,27 +294,27 @@ class ProgramController extends Controller
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
-        	$request->session()->put('ref', get_referral_code()->username);
-        	return redirect('/sertifikasi?ref='.get_referral_code()->username);
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/sertifikasi?ref='.get_referral_code()->username);
         }
         else{
-	        $user = User::where('username',$referral)->where('status','=',1)->first();
-	        if(!$user){
-	        	$request->session()->put('ref', get_referral_code()->username);
-	        	return redirect('/sertifikasi?ref='.get_referral_code()->username);
-	        }
-	        else{
-	        	$request->session()->put('ref', $referral);
-	        }
-	    }
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/sertifikasi?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
         // End get referral
-		
+        
         // Data program
         $programs = Program::join('users','program.author','=','users.id_user')->where('program_kategori',4)->orderBy('program_at','asc')->paginate(12);
 
         // View
-        return view('front/'.template_app().'/program-posts', [
-			'kategori' => 'Sertifikasi',
+        return view('front/program-posts', [
+            'kategori' => 'Sertifikasi',
             'programs' => $programs
         ]);
     }
@@ -316,34 +331,71 @@ class ProgramController extends Controller
         // Get referral
         $referral = $request->query('ref');
         if($referral == null){
-        	$request->session()->put('ref', get_referral_code()->username);
-        	return redirect('/program/'.$permalink.'?ref='.get_referral_code()->username);
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/program/'.$permalink.'?ref='.get_referral_code()->username);
         }
         else{
-	        $user = User::where('username',$referral)->where('status','=',1)->first();
-	        if(!$user){
-	        	$request->session()->put('ref', get_referral_code()->username);
-	        	return redirect('/program/'.$permalink.'?ref='.get_referral_code()->username);
-	        }
-	        else{
-	        	$request->session()->put('ref', $referral);
-	        }
-	    }
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/program/'.$permalink.'?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
         // End get referral
-		
+        
         // Data program
-        $program = Program::join('users','program.author','=','users.id_user')->where('program_permalink','=',$permalink)->first();
+        $program = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->where('program_permalink','=',$permalink)->first();
 
         if(!$program){
             abort(404);
         }
 
+        $program_lainya = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->orderBy('program_at', 'desc')->limit(5)->get();
+
         // View
-        return view('front/'.template_app().'/program-post', [
-            'program' => $program
+        return view('front/single-program', [
+            'program' => $program,
+            'program_lainya' => $program_lainya
         ]);
     }
 
+
+    public function program_all(Request $request)
+    {
+        // Get referral
+        $referral = $request->query('ref');
+        if($referral == null){
+            $request->session()->put('ref', get_referral_code()->username);
+            return redirect('/program?ref='.get_referral_code()->username);
+        }
+        else{
+            $user = User::where('username',$referral)->where('status','=',1)->first();
+            if(!$user){
+                $request->session()->put('ref', get_referral_code()->username);
+                return redirect('/program?ref='.get_referral_code()->username);
+            }
+            else{
+                $request->session()->put('ref', $referral);
+            }
+        }
+
+        $program_semua = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->orderBy('program_at', 'desc')->get();
+        $program_bnsp = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->where('program_kategori','=','1')->orderBy('program_at', 'desc')->get();
+        $program_nonbnsp = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->where('program_kategori','=','2')->orderBy('program_at', 'desc')->get();
+        $program_prakerja = Program::join('users','program.author','=','users.id_user')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->where('program_kategori','=','3')->orderBy('program_at', 'desc')->get();
+
+        // View
+        return view('front/programs', [
+            'program_semua' => $program_semua,
+            'program_bnsp' => $program_bnsp,
+            'program_nonbnsp' => $program_nonbnsp,
+            'program_prakerja' => $program_prakerja,
+        ]);
+
+    }
     /**
      * Menampilkan form edit role
      *
@@ -352,16 +404,20 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
-    	// Data program
-    	$program = Program::find($id);
+        // Data program
+        $program = Program::find($id);
 
         if(!$program){
             abort(404);
         }
+        
+        // Data kategori
+        $kategori = KategoriProgram::all();
 
         // View
         return view('program/admin/edit', [
-        	'program' => $program
+            'program' => $program,
+            'kategori' => $kategori,
         ]);
     }
 
@@ -385,10 +441,10 @@ class ProgramController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
         // Jika tidak ada error
-        else{	
+        else{   
             // Upload gambar
             $image_name = $request->gambar != '' ? upload_file_content($request->gambar, "assets/images/cover-program/") : '';
-			
+            
             // Upload gambar dari quill
             $html = quill_image_upload($request->konten, 'assets/images/konten-program/');
 
@@ -414,7 +470,7 @@ class ProgramController extends Controller
      */
     public function delete(Request $request)
     {
-    	// Menghapus data
+        // Menghapus data
         $program = Program::find($request->id);
         $program->delete();
 
