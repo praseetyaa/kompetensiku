@@ -32,10 +32,10 @@ class ProgramController extends Controller
     }
 
     // EDIT IKI COK ============================================================================================================== 
-    public function index4()
-    {
-        return view('front/acara');
-    }
+    // public function index4()
+    // {
+    //     return view('front/acara');
+    // }
     public function index6(Request $request)
     {
         // Layanan

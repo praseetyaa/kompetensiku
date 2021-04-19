@@ -19,7 +19,11 @@
                 <h5>Kategori</h5>
                 <ul class="list-unstyled">
 				    @foreach($global_kategori_artikel as $kategori_artikel)
+                    @if($kategori_artikel->id_ka != 4)
                     <li><a class="link-secondary text-decoration-none" href="/kategori/{{ $kategori_artikel->slug }}{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">{{ $kategori_artikel->kategori }}</a></li>
+                    @else
+                    <li><a class="link-secondary text-decoration-none" href="/{{ $kategori_artikel->slug }}{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">{{ $kategori_artikel->kategori }}</a></li>
+                    @endif
 				    @endforeach
                 </ul>
             </div>

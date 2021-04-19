@@ -20,6 +20,9 @@
 .rounded-4{border-radius: 2em!important}
 html {scroll-behavior: smooth;}
 body {background-color: var(--bs-light)}
+a{text-decoration: none; transition: var(--transition)}
+a:hover{text-decoration: underline;}
+.navbar a:hover, a.btn:hover{text-decoration: none;}
 [v-cloak]{display: none}
 .w-fit{width: fit-content}
 .h-fit{height: fit-content}

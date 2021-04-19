@@ -8,7 +8,11 @@
 	<nav aria-label="breadcrumb">
 	  <ol class="breadcrumb bg-white p-3 shadow-sm rounded-1">
 	    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-	    <li class="breadcrumb-item"><a href="/artikel">Artikel</a></li>
+      @if($blog->kategori !== 'Acara')
+	    <li class="breadcrumb-item"><a href="/kategori/{{$blog->slug}}">{{$blog->kategori}}</a></li>
+      @else
+      <li class="breadcrumb-item"><a href="/{{$blog->slug}}">{{$blog->kategori}}</a></li>
+      @endif
 	    <li class="breadcrumb-item active" aria-current="page">{{ $blog->blog_title }}</li>
 	  </ol>
 	</nav>
@@ -17,26 +21,26 @@
   <div class="container">
      <div class="row">
         <div class="col-lg-8">
-          	<div class="card">
+          	<div class="card mb-3">
           		<img class="card-img-top rounded-1" src="{{ $blog->blog_gambar != '' ? asset('assets/images/blog/'.$blog->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="artikel">
               	<div class="card-body">
-					<h5>{{ $blog->blog_title }}</h5>
-					<div class="d-flex text-muted">
-						<span class="me-3"><i class="fa fa-calendar"></i> {{ date('d/m/Y H:i', strtotime($blog->blog_at)) }}</span>
-						<span class="me-3"><i class="fa fa-user"></i> {{ $blog->nama_user }}</span>
-						<span><i class="fa fa-comments"></i> {{ count_comments($blog->id_blog) }}</span>
-					</div>
-					 <div class="ql-snow"><div class="ql-editor p-0">{!! html_entity_decode($blog->konten) !!}</div></div>
-					<ul class="tag-list">
-					@foreach($blog_tags as $data)
-					<li>
-					   <a href="/tag/{{ $data->slug }}">{{ $data->tag }}</a>
-					</li>
-					@endforeach
-					</ul>
+        					<h5>{{ $blog->blog_title }}</h5>
+        					<div class="d-flex text-muted">
+        						<span class="me-3"><i class="fa fa-calendar"></i> {{ date('d/m/Y H:i', strtotime($blog->blog_at)) }}</span>
+        						<span class="me-3"><i class="fa fa-user"></i> {{ $blog->nama_user }}</span>
+        						<span><i class="fa fa-comments"></i> {{ count_comments($blog->id_blog) }}</span>
+        					</div>
+        					 <div class="ql-snow"><div class="ql-editor p-0">{!! html_entity_decode($blog->konten) !!}</div></div>
+        					<ul class="tag-list" id="{{$blog->kategori}}">
+        					@foreach($blog_tags as $data)
+        					<li>
+        					   <a href="/tag/{{ $data->slug }}">{{ $data->tag }}</a>
+        					</li>
+        					@endforeach
+					       </ul>
 	            </div>
-			</div>
-           	<div class="card comments-area my-3">
+		        </div>
+           	<div class="card comments-area mb-3" id="{{$blog->kategori}}">
            	<div class="card-body">
               <h4>{{ count_comments($blog->id_blog) }} Komentar</h4>
               <form id="form-delete-comment" method="post" action="/komentar/delete">
@@ -161,37 +165,59 @@
         </div>
         <div class="col-lg-4">
            <div class="blog_right_sidebar">
+              @if($blog->kategori !== 'Acara')
               <aside class="card mb-3">
               	<div class="card-body">
-					<h4 class="widget_title">Kategori</h4>
-					<ul class="list-unstyled m-0">
-						@foreach($kategori as $data)
-						<li>
-						   <a href="/kategori/{{ $data->slug }}" class=" text-body d-flex justify-content-between">
-						      <p class="me-1">{{ $data->kategori }}</p>
-						      <p>({{ count_article_categories($data->id_ka) }})</p>
-						   </a>
-						</li>
-						@endforeach
-					</ul>
-				</div>
+        					<h4 class="widget_title">Kategori</h4>
+        					<ul class="list-unstyled m-0">
+        						@foreach($kategori as $data)
+        						<li>
+        						   <a href="/kategori/{{ $data->slug }}" class=" text-body d-flex justify-content-between">
+        						      <p class="me-1">{{ $data->kategori }}</p>
+        						      <p>({{ count_article_categories($data->id_ka) }})</p>
+        						   </a>
+        						</li>
+        						@endforeach
+        					</ul>
+        				</div>
               </aside>
+              @endif
               <aside class="card mb-3">
               	<div class="card-body">
+                @if($blog->kategori == 'Acara')
+                 <h3 class="widget_title">Acara Terbaru</h3>
+                 @foreach($recents_acara as $recent)
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <img class="rounded me-3" width="70" src="{{ $recent->blog_gambar != '' ? asset('assets/images/blog/'.$recent->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="post">
+                    </div>
+                    <div class="flex-grow-1">
+                      <a class="text-body" href="/acara/{{ $recent->blog_permalink }}">
+                        <span>{{ $recent->blog_title }}</span>
+                      </a>
+                      <p class="text-muted">{{ date('d/m/Y', strtotime($recent->blog_at)) }}</p>
+                    </div>
+                  </div>
+                 @endforeach
+                 @else
                  <h3 class="widget_title">Artikel Terbaru</h3>
                  @foreach($recents as $recent)
-                 <div class="media post_item">
-                    <img class="rounded" width="70" src="{{ $recent->blog_gambar != '' ? asset('assets/images/blog/'.$recent->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="post">
-                    <div class="media-body">
-                       <a class="text-body" href="/artikel/{{ $recent->blog_permalink }}">
-                          <span>{{ $recent->blog_title }}</span>
-                       </a>
-                       <p class="text-muted">{{ date('d/m/Y', strtotime($recent->blog_at)) }}</p>
+                  <div class="d-flex">
+                    <div class="flex-shrink-0">
+                      <img class="rounded me-3" width="70" src="{{ $recent->blog_gambar != '' ? asset('assets/images/blog/'.$recent->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="post">
                     </div>
-                 </div>
+                    <div class="flex-grow-1">
+                      <a class="text-body" href="/artikel/{{ $recent->blog_permalink }}">
+                        <span>{{ $recent->blog_title }}</span>
+                      </a>
+                      <p class="text-muted">{{ date('d/m/Y', strtotime($recent->blog_at)) }}</p>
+                    </div>
+                  </div>
                  @endforeach
+                 @endif
              	</div>
               </aside>
+              @if($blog->kategori !== 'Acara')
               <aside class="card mb-3">
               	<div class="card-body">
                  <h4 class="widget_title">Tag</h4>
@@ -202,8 +228,9 @@
                     </li>
                     @endforeach
                  </ul>
-             	</div>
+             	  </div>
               </aside>
+              @endif
            </div>
         </div>
      </div>
@@ -258,6 +285,7 @@
    .ql-editor p {margin-bottom: 1rem!important; line-height: 1.8!important;}
    .ql-editor ol {padding-left: 30px!important;}
    .ql-editor ol li {font-size: 14px!important; color: #74757f!important; padding-left: 5px!important;}
+   #Acara{display: none!important}
 </style>
 
 @endsection

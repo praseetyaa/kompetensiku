@@ -283,11 +283,27 @@ class BlogController extends Controller
     public function posts()
     {
         // Data artikel
-        $artikel = Blog::join('users','blog.author','=','users.id_user')->orderBy('blog_at','desc')->paginate(9);
+        $artikel = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','!=','4')->orderBy('blog_at','desc')->paginate(9);
 
         // View
         return view('front/posts', [
             'artikel' => $artikel
+        ]);
+    }
+
+    /**
+     * Menampilkan semua acara
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function acaras()
+    {
+        // Data artikel
+        $acara = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','=','4')->orderBy('blog_at','desc')->paginate(9);
+
+        // View
+        return view('front/acara', [
+            'acara' => $acara
         ]);
     }
 
@@ -382,7 +398,7 @@ class BlogController extends Controller
     public function post($permalink)
     {
         // Data artikel
-        $blog = Blog::join('users','blog.author','=','users.id_user')->where('blog_permalink','=',$permalink)->first();
+        $blog = Blog::join('users','blog.author','=','users.id_user')->join('kategori_artikel','blog.blog_kategori','=','kategori_artikel.id_ka')->where('blog_permalink','=',$permalink)->first();
 
         if(!$blog){
             abort(404);
@@ -402,13 +418,14 @@ class BlogController extends Controller
         $blog_komentar = Komentar::join('users','komentar.id_user','=','users.id_user')->where('id_artikel','=',$blog->id_blog)->where('komentar_parent','=',0)->orderBy('komentar_at','desc')->get();
 
         // Kategori
-        $kategori = KategoriArtikel::orderBy('id_ka','desc')->get();
+        $kategori = KategoriArtikel::where('id_ka','!=','4')->orderBy('id_ka','desc')->get();
 
         // Tag
         $tag = Tag::limit(10)->get();
 
         // Artikel terbaru
-        $recents = Blog::join('users','blog.author','=','users.id_user')->orderBy('blog_at','desc')->limit(3)->get();
+        $recents = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','!=','4')->orderBy('blog_at','desc')->limit(3)->get();
+        $recents_acara = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','=','4')->orderBy('blog_at','desc')->limit(3)->get();
 
         // View
         return view('front/single-post', [
@@ -417,6 +434,7 @@ class BlogController extends Controller
             'blog_komentar' => $blog_komentar,
             'kategori' => $kategori,
             'recents' => $recents,
+            'recents_acara' => $recents_acara,
             'tag' => $tag,
         ]);
     }

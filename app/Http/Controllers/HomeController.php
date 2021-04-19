@@ -42,7 +42,7 @@ class HomeController extends Controller
         $testimoni = Testimoni::orderBy('id_testimoni','desc')->get();
 
         // Artikel terbaru
-        $artikel = Blog::join('users','blog.author','=','users.id_user')->orderBy('blog_at','desc')->limit(3)->get();
+        $artikel = Blog::join('users','blog.author','=','users.id_user')->where('blog_kategori','!=','4')->orderBy('blog_at','desc')->limit(3)->get();
 		
         // Get referral
         $referral = $request->query('ref');

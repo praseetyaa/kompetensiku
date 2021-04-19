@@ -15,23 +15,36 @@
 <section>
 	<div class="container">
         <div class="row">
+            @if(count($acara)>0)
+            @foreach($acara as $data)
             <div class="col-6 col-md-4 col-lg-3 mb-3">
                 <div class="card border-0 shadow-sm rounded-1">
-                    <a href="#">
-                        <img class="card-img-top rounded-1" src="{{asset('assets/images/default/artikel.jpg') }}" alt="thumbnail">
+                    <a href="/acara/{{ $data->blog_permalink }}">
+                        <img class="card-img-top rounded-1" src="{{ $data->blog_gambar != '' ? asset('assets/images/blog/'.$data->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="thumbnail">
                     </a>
                     <div class="card-body">
-                        <a class="text-decoration-none text-body" href="#">
-                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                        <a class="text-decoration-none text-body" href="/acara/{{ $data->blog_permalink }}">
+                            <span>{{ $data->blog_title }}</span>
                         </a>
                     </div>
                     <div class="card-footer bg-transparent mx-3 px-0 text-muted d-flex justify-content-between align-items-center">
-                        <span><i class="fa fa-calendar"></i> 20/23/2990</span>
-                        <span><i class="fa fa-comments"></i> 3</span>
+                        <span><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($data->blog_at)) }}</span>
+                        <span><i class="fa fa-comments"></i> {{ count_comments($data->id_blog) }}</span>
                     </div>
                 </div>
             </div>
+            @endforeach
+            @else
+            <div class="text-center my-5">
+                <img src="{{asset('assets/images/icons/cloud-network.svg')}}" width="150">
+                <h3>Oh tidak! Data Belum Tersedia</h3>
+                <p>Data ini akan kami sediakan secepat kilat</p>
+            </div>
+            @endif
         </div>
+        <nav class="blog-pagination justify-content-center d-flex">
+            {!! $acara->links() !!}
+        </nav>
 	</div>
 </section>
 

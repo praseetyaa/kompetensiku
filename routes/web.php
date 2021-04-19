@@ -26,6 +26,10 @@ Route::group(['middleware' => ['guest']], function(){
 	Route::post('/komentar', 'BlogController@comment');
 	Route::post('/komentar/delete', 'BlogController@deleteComment');
 
+	// Acara
+	Route::get('/acara', 'BlogController@acaras');
+	Route::get('/acara/{permalink}', 'BlogController@post');
+
 	// Halaman
 	Route::get('/page/{permalink}', 'HalamanController@page');
 	
@@ -46,8 +50,8 @@ Route::group(['middleware' => ['guest']], function(){
 	Route::get('/program', 'ProgramController@program_all');
 	// Route::get('/program/single-program', 'ProgramController@index3');
 	Route::get('/program/{permalink}', 'ProgramController@programpost');
-	Route::get('/acara', 'ProgramController@index4');
-	Route::get('/acara/acara-program', 'ProgramController@index5');
+	// Route::get('/acara', 'ProgramController@index4');
+	// Route::get('/acara/acara-program', 'ProgramController@index5');
 	Route::get('/tentang-kami', 'ProgramController@index6');
 
 	if(lms_app() == 'cd'){

@@ -89,6 +89,7 @@
 			<span id="typed"></span>
 		</div>
         <div class="row">
+        	@if(count($program_semua)>0)
             @foreach($program_semua as $data)
             <div class="col-6 col-md-4 col-lg-3 mb-3">
                 <div class="card border-0 shadow-sm rounded-1" 
@@ -112,6 +113,13 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="text-center my-5">
+                <img src="{{asset('assets/images/icons/cloud-network.svg')}}" width="150">
+                <h3>Oh tidak! Data Belum Tersedia</h3>
+                <p>Data ini akan kami sediakan secepat kilat</p>
+            </div>
+            @endif
         </div>
 		<div class="text-center mt-3">
 			<a href="/program" class="btn btn-theme-1 px-4">Lihat Lainya</a>
@@ -145,6 +153,7 @@
 			<h5>Artikel</h5>
 		</div>
         <div class="row">
+        	@if(count($artikel)>0)
 			@foreach($artikel as $data)
             <div class="col-6 col-md-4 col-lg-3 mb-3">
 				<div class="card border-0 shadow-sm rounded-1">
@@ -152,9 +161,13 @@
                         <img class="card-img-top rounded-1" src="{{ $data->blog_gambar != '' ? asset('assets/images/blog/'.$data->blog_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="thumbnail">
                     </a>
                 	<div class="card-body">
-	                    <a class="text-decoration-none text-body" href="/artikel/{{ $data->blog_permalink }}">
-	                        <span>{{ $data->blog_title }}</span>
-	                    </a>
+                        <div class="row mb-2">
+                            <div class="col-12 text-truncate">
+			                    <a class="text-decoration-none text-body" href="/artikel/{{ $data->blog_permalink }}">
+			                        <span>{{ $data->blog_title }}</span>
+			                    </a>
+                            </div>
+                        </div>
 	                </div>
                     <div class="card-footer bg-transparent mx-3 px-0 text-muted d-flex justify-content-between align-items-center">
                         <span><i class="fa fa-calendar"></i> {{ date('d/m/Y', strtotime($data->blog_at)) }}</span>
@@ -163,6 +176,13 @@
            		</div>
            	</div>
             @endforeach
+            @else
+            <div class="text-center my-5">
+                <img src="{{asset('assets/images/icons/cloud-network.svg')}}" width="150">
+                <h3>Oh tidak! Data Belum Tersedia</h3>
+                <p>Data ini akan kami sediakan secepat kilat</p>
+            </div>
+            @endif
         </div>
 	</div>
 </section>
