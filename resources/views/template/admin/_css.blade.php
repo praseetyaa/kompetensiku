@@ -1,10 +1,10 @@
 <style type="text/css">
     #navbarSupportedContent {background: {{ get_warna_primer() }}!important;}
-    .navbar-header[data-logobg=skin5] {background: {{ get_warna_sekunder() }}!important;}
+    .navbar-header[data-logobg=skin5] {background: var(--white)!important;}
     #main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul {background: {{ get_warna_tersier() }}!important;}
     .page-wrapper {background: linear-gradient(180deg, #eeeeee, #ffffff)!important;}
     .page-wrapper > .container-fluid {min-height: calc(100vh - 163px);}
-    .logo-text {font-weight: bold; font-size: 1.3rem; text-transform: uppercase; color: {{ get_warna_teks_logo() }}!important;}
+    .logo-text {font-weight: bold; font-size: 1.3rem; text-transform: uppercase; color: var(--color-1)!important;}
     .navbar-nav .dropdown-menu {background-color: #eeeeee;}
     .dropdown-menu .dropdown-item:hover {background-color: #dddddd;}
     .sidebar-nav ul .sidebar-item .sidebar-link {padding: 8px;}
@@ -25,6 +25,7 @@
         --border-light: rgba(2555,255,255,.5); 
         --shadow: 0 .125rem .25rem rgba(0,0,0,.075);
         --transition: .25s ease;
+        --transition-cubic: .5s cubic-bezier(0.65, 0.05, 0.36, 1);
         --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"!important;
     }
     .rounded-1{border-radius: .5em!important}
@@ -53,4 +54,6 @@
     .alert, .card, .navbar-nav .dropdown-menu{border-radius: .5em}
     .navbar-nav .dropdown-menu{background-color: var(--white)}
     .navbar-nav .dropdown-menu .dropdown-item.bg-success{background-color: var(--color-1)!important; color: var(--white)}
+    .topbar .top-navbar .navbar-header{transition: var(--transition); background-color: var(--white)}
+  
 </style>
