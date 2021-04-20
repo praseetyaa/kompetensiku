@@ -12,11 +12,24 @@
 		  <div class="carousel-inner rounded-0 rounded-md-1 shadow-sm">
 		  	@foreach($slider as $key => $data)
 		    <div class="carousel-item {{$key == 0 ? 'active' : '' }}" data-bs-interval="10000">
-		    <a href="{{$data->slider_url}}">
+		    <!-- <a href="{{$data->slider_url}}"> -->
 		      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="d-block" alt="carousel"
 		      	style="background-image: url({{ asset('assets/images/slider/'.$data->slider) }}); background-size: cover; background-repeat: no-repeat; width: 100%; height: 400px">
 		      <div class="carousel-caption d-flex align-items-center justify-content-center">
 		      	@if($key == 0)
+		      	<div class="content mx-md-5 px-md-5">
+		      		<div class="mb-3 w-100 text-center d-flex justify-content-center">
+		      			<div class="w-fit">
+			      			<h2 class="text-capitalize">bisnis adalah tentang membangun SDM</h2>
+			      			<p class="text-capitalize">mengapa kita perlu mengembangkan SDM untuk menumbuhkan bisnis?</p>
+			      			<hr>
+			      			<p class="text-capitalize">daftar sekarang untuk mengetahui jawabanya</p>
+			      			<a href="/register" class="btn btn-light">Daftar Sekarang</a>
+			      		</div>
+		      		</div>
+			    </div>
+		      	@endif
+		      	@if($key == 1)
 		      	<div class="content mx-md-5 px-md-5">
 		      		<div class="mb-3 w-100 text-center d-flex justify-content-center">
 		      			<div class="w-fit">
@@ -36,18 +49,8 @@
 			        </div>
 			    </div>
 		      	@endif
-		      	@if($key == 1)
-		      	<div class="content mx-md-5 px-md-5">
-		      		<div class="mb-3 w-100 text-center d-flex justify-content-center">
-		      			<div class="w-fit">
-			      			<h2>:3</h2>
-			      			<hr>
-			      		</div>
-		      		</div>
-			    </div>
-		      	@endif
 		      </div>
-		  	</a>
+		  	<!-- </a> -->
 		    </div>
 		    @endforeach
 		  </div>
