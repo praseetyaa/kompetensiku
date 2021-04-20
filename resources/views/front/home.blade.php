@@ -5,23 +5,51 @@
 	<div class="container pb-3 pt-0 pt-md-3 px-0 px-lg-auto">
 		<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
 		  <div class="carousel-indicators">
-		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  	@foreach($slider as $key => $data)
+		    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{$key}}" class="{{$key == 0 ? 'active' : '' }}" aria-current="{{$key == 0 ? 'true' : '' }}" aria-label="Slide {{$key}}"></button>
+		    @endforeach
 		  </div>
 		  <div class="carousel-inner rounded-0 rounded-md-1 shadow-sm">
-		    <div class="carousel-item active" data-bs-interval="10000">
+		  	@foreach($slider as $key => $data)
+		    <div class="carousel-item {{$key == 0 ? 'active' : '' }}" data-bs-interval="10000">
+		    <a href="{{$data->slider_url}}">
 		      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="d-block" alt="carousel"
-		      	style="background-image: url('https://kompetensiku.id/assets/images/others/slider-1.jpg'); background-size: cover; background-repeat: no-repeat; width: 100%; height: 400px">
+		      	style="background-image: url({{ asset('assets/images/slider/'.$data->slider) }}); background-size: cover; background-repeat: no-repeat; width: 100%; height: 400px">
+		      <div class="carousel-caption d-flex align-items-center justify-content-center">
+		      	@if($key == 0)
+		      	<div class="content mx-md-5 px-md-5">
+		      		<div class="mb-3 w-100 text-center d-flex justify-content-center">
+		      			<div class="w-fit">
+			      			<h2>Kompetensiku</h2>
+			      			<hr>
+			      		</div>
+		      		</div>
+			        <div class="row text-center">
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Materi Berkualitas</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Berbasis Kompetensi</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Bersertifikat BNSP</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Distance Learning</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> E-Learning Program</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Pelatihan Tatap Muka</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Paket Uji Kompetensi</div>
+			        	<div class="col-md-6"><i class="fas fa-check"></i> Harga Terjangkau</div>
+			        </div>
+			    </div>
+		      	@endif
+		      	@if($key == 1)
+		      	<div class="content mx-md-5 px-md-5">
+		      		<div class="mb-3 w-100 text-center d-flex justify-content-center">
+		      			<div class="w-fit">
+			      			<h2>:3</h2>
+			      			<hr>
+			      		</div>
+		      		</div>
+			    </div>
+		      	@endif
+		      </div>
+		  	</a>
 		    </div>
-		    <div class="carousel-item" data-bs-interval="2000">
-		      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="d-block" alt="carousel"
-		      	style="background-image: url('https://kompetensiku.id/assets/images/others/slider-2.jpg'); background-size: cover; background-repeat: no-repeat; width: 100%; height: 400px">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="d-block" alt="carousel"
-		      	style="background-image: url('https://kompetensiku.id/assets/images/others/slider-3.jpg'); background-size: cover; background-repeat: no-repeat; width: 100%; height: 400px">
-		    </div>
+		    @endforeach
 		  </div>
 		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
 		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -37,6 +37,8 @@ a:hover{text-decoration: underline;}
 .megamenu{position: absolute; width: 100%; left: 0; right: 0; padding: 15px; top: 3.5em;}
 
 .section-carousel .carousel-indicators [data-bs-target]{width: 10px; height: 10px; border: unset; border-radius: var(--rounded-3)}
+.section-carousel .carousel-caption{height: 100%; left: 0; right: 0; bottom: 0; padding: 0 15px; background: rgb(0,0,0);
+background: linear-gradient(155deg, rgba(0,0,0,0.4) 20%, rgba(0,14,56,0.8) 100%)}
 .section-intro .content-intro:hover .wrap-img{animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;}
 
 .breadcrumb .breadcrumb-item a{color: var(--bs-gray); text-decoration: none;}
