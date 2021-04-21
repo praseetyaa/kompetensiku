@@ -17,12 +17,12 @@
                     <ul class="navbar-nav float-left mr-auto">
                         <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
                     </ul>
-                    <div class="input-group">
+<!--                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text bg-transparent border-right-0" id="basic-addon1" style="border-radius: 1.5em 0 0 1.5em"><i class="ti-search font-weight-bold"></i></span>
                       </div>
                       <input type="text" class="form-control border-left-0" placeholder="Pencarian" aria-label="Pencarian" aria-describedby="basic-addon1" style="border-radius: 0 1.5em 1.5em 0">
-                    </div>
+                    </div> -->
                     <ul class="navbar-nav float-right">
                         @if(Auth::user()->role == role_it())
                         <li class="nav-item dropdown">

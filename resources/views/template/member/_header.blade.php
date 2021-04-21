@@ -22,7 +22,7 @@
                          <!-- Logo text -->
                         <span class="logo-text ml-2">
                              <!-- dark Logo text -->
-                             <img src="{{ asset('assets/images/logo/logo-text.png') }}" height="30" alt="homepage" class="light-logo" />
+                             <img src="{{ asset('assets/images/logo/1618198274-logo.png') }}" width="170" alt="homepage" class="light-logo" />
                             
                         </span>
                         <!-- Logo icon -->
