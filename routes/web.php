@@ -45,7 +45,8 @@ Route::group(['middleware' => ['guest']], function(){
 	// Register
 	Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
 	Route::post('/register', 'Auth\RegisterController@register');
-
+	// Pencarian
+	Route::get('/pencarian', 'DashboardController@search');
 	// program
 	Route::get('/program', 'ProgramController@program_all');
 	// Route::get('/program/single-program', 'ProgramController@index3');

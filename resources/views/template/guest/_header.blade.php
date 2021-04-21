@@ -30,10 +30,10 @@
     </div>
     @endif
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="w-100 me-2 mt-3 mt-lg-0">
+    <form class="w-100 me-2 mt-3 mt-lg-0" method="get" action="/pencarian">
       <div class="input-group search-bar">
-        <input type="text" class="form-control border-end-0" placeholder="Pencarian">
-        <button class="input-group-text bg-transparent border-start-0"><i class="fas fa-search color-theme-1"></i></button>
+        <input type="text" class="form-control border-end-0" placeholder="Pencarian" name="q" value="{{ isset($_GET) && isset($_GET['q']) ? $_GET['q'] : '' }}" required>
+        <button class="input-group-text bg-transparent border-start-0" type="submit"><i class="fas fa-search color-theme-1"></i></button>
       </div>
     </form>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">

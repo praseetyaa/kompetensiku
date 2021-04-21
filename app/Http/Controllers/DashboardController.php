@@ -19,6 +19,8 @@ use App\Popup;
 use App\Signature;
 use App\User;
 use App\Visitor;
+use App\KategoriProgram;
+use App\Program;
 
 class DashboardController extends Controller
 {
@@ -130,5 +132,28 @@ class DashboardController extends Controller
 			));
 		}
 		echo json_encode($array);
+    }
+
+
+
+    /**
+     * Search Page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        // Keyword dan kategori
+        $q = $request->query('q');
+
+        // Data kategori
+        $program = Program::orderBy('program_at','desc')->join('kategori_program','program.program_kategori','=','kategori_program.id_kp')->where('program_title','like','%'.$q.'%')->paginate(12);
+
+
+        // View
+        return view('front/pencarian', [
+            'program' => $program,
+        ]);
+   
     }
 }
