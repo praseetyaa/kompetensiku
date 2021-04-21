@@ -9,12 +9,14 @@
 	  <ol class="breadcrumb bg-white p-3 shadow-sm rounded-1">
 	    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
 	    <li class="breadcrumb-item active" aria-current="page">Kategori</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$kategori->kategori}}</li>
 	  </ol>
 	</nav>
 </div>
 <section>
 	<div class="container">
         <div class="row">
+            @if(count($artikel)>0)
             @foreach($artikel as $data)
             <div class="col-6 col-md-4 col-lg-3 mb-3">
 				<div class="card border-0 shadow-sm rounded-1">
@@ -33,6 +35,13 @@
            		</div>
            	</div>
             @endforeach
+            @else
+            <div class="text-center my-5">
+                <img src="{{asset('assets/images/icons/cloud-network.svg')}}" width="150">
+                <h3>Oh tidak! Data Belum Tersedia</h3>
+                <p>Data ini akan kami sediakan secepat kilat</p>
+            </div>
+            @endif
         </div>
         
         <nav class="blog-pagination justify-content-center d-flex">
