@@ -26,7 +26,7 @@
                 data-bs-placement="bottom"
                 title="{{$data->program_title}}">
                 <a href="/program/{{$data->program_permalink}}" class="card-link">
-                    <img src="{{asset('assets/images/cover-program/'.$data->program_gambar) }}" class="card-img-top rounded-1" alt="thumbnail">
+                    <img src="{{ $data->program_gambar != '' ? asset('assets/images/cover-program/'.$data->program_gambar) : asset('assets/images/default/artikel.jpg') }}" class="card-img-top rounded-1" alt="thumbnail">
                 </a>
                 <div class="card-img-overlay h-fit w-fit">
                     <p class="card-title bg-theme-1 text-white py-1 px-2 w-fit rounded">{{$data->kategori}}</p>
@@ -49,6 +49,7 @@
             <p>Data ini akan kami sediakan secepat kilat</p>
         </div>
         @endif
+        <div class="d-flex justify-content-center">{!! $program->appends(['q' => $_GET['q'], 'k' => 'kategori'])->links() !!}</div>s
     </div>
 </section>
 
