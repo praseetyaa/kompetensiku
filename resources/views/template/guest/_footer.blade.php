@@ -10,9 +10,7 @@
             <div class="col-md-6 col-lg-2">
                 <h5>Menu</h5>
                 <ul class="list-unstyled">
-				    @foreach($global_halaman as $halaman)
-                    <li><a class="link-secondary text-decoration-none" href="/page/{{ $halaman->halaman_permalink }}{{ Session::get('ref') != null ? '?ref='.Session::get('ref') : '' }}">{{ $halaman->halaman_title }}</a></li>
-				    @endforeach
+                    <li><a class="link-secondary text-decoration-none" href="/tentang-kami">Tentang-Kami</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-2">

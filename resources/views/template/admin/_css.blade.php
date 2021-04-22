@@ -20,7 +20,8 @@
 
     /*baonk here*/
     :root{ 
-        --color-1: #000e38;
+        --color-1: #000E38;
+        --color-1-light: #e4fff4;
         --color-2: #34495e; 
         --border-light: rgba(2555,255,255,.5); 
         --shadow: 0 .125rem .25rem rgba(0,0,0,.075);
@@ -39,8 +40,9 @@
     #navbarSupportedContent{background-color: var(--white)!important}
     .topbar{box-shadow: var(--shadow)}
     .navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link, .topbar .nav-toggler, .topbar .topbartoggler{color: var(--dark)!important}
-    .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color: var(--dark)}
+    .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color: var(--gray)}
     #main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul{background: var(--white)!important; box-shadow: unset;}
+    #main-wrapper .left-sidebar[data-sidebarbg=skin5]{box-shadow: var(--shadow)}
     .left-sidebar{transition: var(--transition)}
     .sidebar-nav{padding: 0 .8em 0 .8em;}
     .sidebar-nav .has-arrow:after{border-color: var(--dark); top: 21px}

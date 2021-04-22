@@ -112,7 +112,7 @@ class HalamanController extends Controller
         }
 
         // View
-        return view('front/'.template_app().'/page', [
+        return view('front/page', [
             'halaman' => $halaman,
         ]);
     }
