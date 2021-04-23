@@ -74,7 +74,7 @@
                                 <div class="row">
                                     <div class="col-6 text-center">
                                         <a href="/admin/transaksi/komisi" class="dropdown-item">
-                                            <span class="btn btn-success btn-circle mb-2"><i class="ti-pie-chart"></i>
+                                            <span class="btn btn-success btn-circle mb-2"><i class="ti-money"></i>
                                                 @if($global_komisi_total > 0)
                                                 <span class="badge badge-pill badge-danger" style="position: absolute; top: 0">{{ $global_komisi_total }}</span>
                                                 @endif
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <a href="/admin/transaksi/withdrawal" class="dropdown-item">
-                                            <span class="btn btn-danger btn-circle mb-2"><i class="ti-bar-chart"></i>
+                                            <span class="btn btn-danger btn-circle mb-2"><i class="ti-money"></i>
                                                 @if($global_withdrawal_total > 0)
                                                     <span class="badge badge-pill badge-danger" style="position: absolute; top: 0">{{ $global_withdrawal_total }}</span>
                                                 @endif
@@ -94,12 +94,12 @@
                                     </div>
                                     <div class="col-6 text-center">
                                         <a href="/admin/transaksi/pelatihan" class="dropdown-item">
-                                            <span class="btn btn-warning btn-circle mb-2"><i class="ti-book"></i>
+                                            <span class="btn btn-warning btn-circle mb-2"><i class="ti-money"></i>
                                                 @if($global_pelatihan_member_total > 0)
                                                     <span class="badge badge-pill badge-danger" style="position: absolute; top: 0">{{ $global_pelatihan_member_total }}</span>
                                                 @endif
                                             </span>
-                                            <p class="m-0">Pembayaran<br>Pelatiha</p>
+                                            <p class="m-0">Pembayaran<br>Pelatihan</p>
                                         </a> 
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                 <img src="{{ Auth::user()->foto != '' ? asset('assets/images/users/'.Auth::user()->foto) : asset('assets/images/default/user.jpg') }}" alt="user" class="rounded-1 flex-shrink-0 mr-3" width="40">
                                 <div class="flex-grow-1">
                                     <p class="m-0">Hai, <strong>{{ Auth::user()->nama_user }}</strong></p>
-                                    <p class="m-0">{{ Auth::user()->role }}</p>
+                                    <p class="m-0">{{ get_role_name(Auth::user()->role) }}</p>
                                 </div>
                             </div>
                             <div class="card-body p-0">
