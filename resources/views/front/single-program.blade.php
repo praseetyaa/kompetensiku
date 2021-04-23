@@ -26,7 +26,7 @@
                 <a href="/login" class="btn btn-light">Ambil Pelatihan</a>
               </div>
               <div class="col-lg-4 order-1 order-lg-2 px-0 px-md-3">
-                  <img class="img-fluid rounded mb-3 mb-lg-0" src="{{asset('assets/images/cover-program/'.$program->program_gambar) }}">
+                  <img class="img-fluid rounded mb-3 mb-lg-0" src="{{ $program->program_gambar != '' ? asset('assets/images/cover-program/'.$program->program_gambar) : asset('assets/images/default/artikel.jpg') }}">
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
                   @foreach($program_lainya as $data)
                   <a class="text-body" href="/program/{{$data->program_permalink}}">
                       <div class="d-flex mb-3">
-                          <img class="rounded flex-shrink-0 me-3" width="70" src="{{asset('assets/images/cover-program/'.$data->program_gambar) }}" alt="post">
+                          <img class="rounded flex-shrink-0 me-3" width="70" src="{{ $data->program_gambar != '' ? asset('assets/images/cover-program/'.$data->program_gambar) : asset('assets/images/default/artikel.jpg') }}" alt="post">
                           <span>{{$data->program_title}}</span>
                       </div>
                   </a>
