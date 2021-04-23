@@ -43,7 +43,7 @@
     .navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color: var(--gray)}
     #main-wrapper .left-sidebar[data-sidebarbg=skin5], #main-wrapper .left-sidebar[data-sidebarbg=skin5] ul{background: var(--white)!important; box-shadow: unset;}
     #main-wrapper .left-sidebar[data-sidebarbg=skin5]{box-shadow: var(--shadow)}
-    .left-sidebar{transition: var(--transition)}
+    .left-sidebar, .page-wrapper, .topbar .top-navbar .navbar-header{transition: var(--transition)}
     .sidebar-nav{padding: 0 .8em 0 .8em;}
     .sidebar-nav .has-arrow:after{border-color: var(--dark); top: 21px}
     .sidebar-nav ul .sidebar-item .sidebar-link{margin-bottom: .5em; border-radius: .5em}
@@ -52,10 +52,10 @@
     .sidebar-nav ul .sidebar-item.selected>.sidebar-link{border-radius: .5em; background: var(--color-1)}
     .sidebar-nav ul .sidebar-item.selected>.has-arrow:after{border-color: var(--light)}
 
-    .page-wrapper{background: var(--light)!important; transition: var(--transition)}
+    .page-wrapper{background: var(--light)!important;}
     .alert, .card, .navbar-nav .dropdown-menu{border-radius: .5em}
     .navbar-nav .dropdown-menu{background-color: var(--white)}
     .navbar-nav .dropdown-menu .dropdown-item.bg-success{background-color: var(--color-1)!important; color: var(--white)}
-    .topbar .top-navbar .navbar-header{transition: var(--transition); background-color: var(--white)}
+    .topbar .top-navbar .navbar-header{background-color: var(--white)}
   
 </style>

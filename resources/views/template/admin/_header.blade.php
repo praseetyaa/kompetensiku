@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col-6">
                                         <a class="dropdown-item text-center py-4" href="/admin/profil">
-                                            <span class="btn btn-danger btn-circle mb-2"><i class="ti-user"></i></span>
+                                            <span class="btn btn-warning btn-circle mb-2"><i class="ti-user"></i></span>
                                             <p class="m-0">Profil</p>
                                         </a>
                                     </div>

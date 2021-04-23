@@ -5,15 +5,15 @@
 @section('content')
 
 <div class="container mt-3">
-	<nav aria-label="breadcrumb">
-	  <ol class="breadcrumb bg-white p-3 shadow-sm rounded-1">
-	    <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Program</a></li>
-	  </ol>
-	</nav>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-white p-3 shadow-sm rounded-1">
+        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Program</a></li>
+      </ol>
+    </nav>
 </div>
 <section>
-	<div class="container">
+    <div class="container">
         <ul class="nav nav-pills nav-justified mb-3 bg-white shadow-sm rounded-1 p-2" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">BNSP</button>
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-	</div>
+    </div>
 </section>
 
 @endsection

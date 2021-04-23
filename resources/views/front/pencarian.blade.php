@@ -49,7 +49,7 @@
             <p>Data ini akan kami sediakan secepat kilat</p>
         </div>
         @endif
-        <div class="d-flex justify-content-center">{!! $program->appends(['q' => $_GET['q'], 'k' => 'kategori'])->links() !!}</div>s
+        <div class="d-flex justify-content-center">{!! $program->appends(['q' => $_GET['q'], 'k' => 'kategori'])->links() !!}</div>
     </div>
 </section>
 
